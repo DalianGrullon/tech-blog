@@ -17,7 +17,9 @@ app.set('view engine', 'handlebars');
 
 app.use(session({
   secret: 'something',
-  cookie: {},
+  cookie: {
+    maxAge: 300000
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({

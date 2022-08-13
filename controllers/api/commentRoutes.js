@@ -7,7 +7,7 @@ router.post('/create', async (req, res) => {
     const user = await User.findOne({
       raw: true,
       where: {
-        username: 'dalian'
+        username: req.session.username
       }
     });
     const post = await Post.findOne({
@@ -18,7 +18,7 @@ router.post('/create', async (req, res) => {
     });
     const dbCommentData = await Comment.create({
       content: req.body.content,
-      user: user.id,
+      user: user.username,
       post: post.id
     });
 

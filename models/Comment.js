@@ -15,10 +15,10 @@ Comment.init(
       type: DataTypes.TEXT,
     },
     user: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       reference: {
         model: 'user',
-        key: 'id'
+        key: 'username'
       }
     },
     post: {

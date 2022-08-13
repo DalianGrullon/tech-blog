@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
-
+    
     res.status(200).render('homepage', {
       posts,
       logged_in: req.session.logged_in,
@@ -42,7 +42,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     const posts = await Post.findAll({
       raw: true,
       where: {
-        user: user.id
+        user: user.username
       }
     });
     

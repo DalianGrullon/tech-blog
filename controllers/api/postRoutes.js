@@ -1,6 +1,15 @@
 const router = require('express').Router();
 const { Post, User } = require('../../models/index');
 
+router.get('/:id', async (req, res) => {
+  try {
+    const post = await Post.findByPk(req.params.id);
+    res.status(200).json(post);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // post
 router.post('/create', async (req, res) => {
   try {
@@ -13,7 +22,7 @@ router.post('/create', async (req, res) => {
     const dbPostData = await Post.create({
       title: req.body.title,
       content: req.body.content,
-      user: user.id
+      user: user.username
     });
 
     res.status(201).json(dbPostData);

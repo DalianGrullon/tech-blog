@@ -30,12 +30,26 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get('/dashboard', withAuth, (req, res) => {
-  // render dashboard page
-});
-
-router.get('/post', withAuth, (req, res) => {
-  // render postpage with post data
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
+    // get all posts from currently logged in user
+    const user = await User.findOne({
+      raw: true,
+      where: {
+        username: req.session.username
+      }
+    });
+    const posts = await Post.findAll({
+      raw: true,
+      where: {
+        user: user.id
+      }
+    });
+    
+    res.render('dashboard', { posts });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;

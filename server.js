@@ -5,6 +5,8 @@ const routes = require('./controllers/index');
 const sequelize = require('./config/connection');
 const session = require('express-session');
 
+require('dotenv').config();
+
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
@@ -16,7 +18,7 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(session({
-  secret: 'something',
+  secret: COOKIE_SECRET,
   cookie: {
     maxAge: 300000
   },

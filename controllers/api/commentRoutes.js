@@ -51,24 +51,24 @@ router.put('/update', async (req, res) => {
   }
 });
 
-// // delete
-// router.delete('/delete', async (req, res) => {
-//   try {
-//     const dbPostData = await Post.destroy({
-//       where: {
-//         id: req.body.id
-//       }
-//     });
+// delete
+router.delete('/delete', async (req, res) => {
+  try {
+    const dbCommentData = await Comment.destroy({
+      where: {
+        id: req.body.id
+      }
+    });
 
-//     if (!dbPostData) {
-//       res.status(404).json({ message: 'Could not find post to delete!' });
-//       return;
-//     }
+    if (!dbCommentData) {
+      res.status(404).json({ message: 'Could not find post to delete!' });
+      return;
+    }
 
-//     res.status(200).json({ message: 'Post has been successfully deleted!' });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    res.status(200).json({ message: 'Post has been successfully deleted!' });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;

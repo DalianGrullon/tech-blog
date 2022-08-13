@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Post, User } = require('../../models/index');
 
 // post
-router.post('/', async (req, res) => {
+router.post('/create', async (req, res) => {
   try {
     const user = await User.findOne({
       raw: true,
@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
 });
 
 // update
-router.put('/', async (req, res) => {
+router.put('/update', async (req, res) => {
   try {
     const dbPostData = await Post.update(
       {
@@ -35,6 +35,11 @@ router.put('/', async (req, res) => {
       }}
     );
 
+    if (!dbPostData[0]) {
+      res.status(404).json({ message: 'Could not find post to update!' });
+      return;
+    }
+
     res.status(200).json({ message: 'Successfully updated post!' });
   } catch (err) {
     res.status(500).json(err);
@@ -42,6 +47,23 @@ router.put('/', async (req, res) => {
 });
 
 // delete
-router.delete('/', async (req, res) => {});
+router.delete('/delete', async (req, res) => {
+  try {
+    const dbPostData = await Post.destroy({
+      where: {
+        id: req.body.id
+      }
+    });
+
+    if (!dbPostData) {
+      res.status(404).json({ message: 'Could not find post to delete!' });
+      return;
+    }
+
+    res.status(200).json({ message: 'Post has been successfully deleted!' });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 module.exports = router;

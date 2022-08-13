@@ -3,8 +3,16 @@ const { Post, User } = require('../../models/index');
 
 router.get('/:id', async (req, res) => {
   try {
-    const post = await Post.findByPk(req.params.id);
-    res.status(200).json(post);
+    const post = await Post.findByPk(req.params.id, {
+      raw: true
+    });
+
+    if (!post) {
+      res.status(404).json({ message: 'Could not find post with that id!' });
+      return;
+    }
+
+    res.status(200).render('postpage', { post });
   } catch (err) {
     res.status(500).json(err);
   }

@@ -13,9 +13,16 @@ async function clickHandler(event) {
     case 'login':
       window.location.href = '/login';
       break;
-    // case 'logout':
+    case 'logout':
+      const request = await fetch('/api/users/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
 
-    //   break;
+      window.location.href = '/';
+      break;
   
     default:
       break;

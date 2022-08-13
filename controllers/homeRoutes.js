@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     
     res.status(200).render('homepage', {
       posts,
-      logged_in: req.session.logged_in,
+      logged_in: req.session.loggedIn
     });
   } catch (err) {
     res.status(500).json(err);
@@ -27,7 +27,21 @@ router.get('/login', (req, res) => {
     return;
   }
 
-  res.render('login');
+  res.render('login', {
+    logged_in: req.session.loggedIn
+  });
+});
+
+router.get('/signup', (req, res) => {
+  // If a session exists, redirect the request to the homepage
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('signup', {
+    logged_in: req.session.loggedIn
+  });
 });
 
 router.get('/dashboard', withAuth, async (req, res) => {
@@ -46,7 +60,10 @@ router.get('/dashboard', withAuth, async (req, res) => {
       }
     });
     
-    res.render('dashboard', { posts });
+    res.render('dashboard', {
+      posts,
+      logged_in: req.session.loggedIn
+    });
   } catch (err) {
     res.status(500).json(err);
   }

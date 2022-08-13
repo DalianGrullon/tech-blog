@@ -1,3 +1,10 @@
+#login, a {
+  text-decoration: none;
+}
+#login, a:hover {
+  text-decoration: none;
+}
+
 .post-card {
   text-decoration: none;
   color: black;

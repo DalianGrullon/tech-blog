@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const { Post, User } = require('../../models/index');
+const withAuth = require('../../utils/auth');
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', withAuth, async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id, {
       raw: true
@@ -12,7 +13,10 @@ router.get('/:id', async (req, res) => {
       return;
     }
 
-    res.status(200).render('postpage', { post });
+    res.status(200).render('postpage', {
+      post,
+      logged_in: req.session.loggedIn
+    });
   } catch (err) {
     res.status(500).json(err);
   }

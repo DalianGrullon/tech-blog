@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Post, User } = require('../models/index'); 
+const withAuth = require('../utils/auth');
 
 router.get('/', (req, res) => {
   // Determine loggedin status
@@ -10,13 +11,11 @@ router.get('/login', (req, res) => {
   // render login page
 });
 
-router.get('/dashboard', (req, res) => {
-  // middleware to determine whether user is loggedin, if not, route to login page
+router.get('/dashboard', withAuth, (req, res) => {
   // render dashboard page
 });
 
-router.get('/post', (req, res) => {
-  // middleware to determine whether user is loggedin, if not, route to login page
+router.get('/post', withAuth, (req, res) => {
   // render postpage with post data
 });
 

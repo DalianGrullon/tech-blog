@@ -28,29 +28,28 @@ router.post('/create', async (req, res) => {
   }
 });
 
-// // update
-// router.put('/update', async (req, res) => {
-//   try {
-//     const dbPostData = await Post.update(
-//       {
-//         title: req.body.title,
-//         content: req.body.content
-//       },
-//       {where: {
-//         id: req.body.id
-//       }}
-//     );
+// update
+router.put('/update', async (req, res) => {
+  try {
+    const dbCommentData = await Comment.update(
+      {
+        content: req.body.content
+      },
+      {where: {
+        id: req.body.id
+      }}
+    );
 
-//     if (!dbPostData[0]) {
-//       res.status(404).json({ message: 'Could not find post to update!' });
-//       return;
-//     }
+    if (!dbCommentData[0]) {
+      res.status(404).json({ message: 'Could not find comment to update!' });
+      return;
+    }
 
-//     res.status(200).json({ message: 'Successfully updated post!' });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    res.status(200).json({ message: 'Successfully updated comment!' });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // // delete
 // router.delete('/delete', async (req, res) => {

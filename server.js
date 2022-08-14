@@ -18,7 +18,7 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(session({
-  secret: process.env.SECRET,
+  secret: process.env.SECRET || 'SS87Hs3SSadfg3',
   cookie: {
     maxAge: 300000
   },

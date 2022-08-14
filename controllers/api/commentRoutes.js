@@ -18,7 +18,7 @@ router.post('/create', async (req, res) => {
     });
     const dbCommentData = await Comment.create({
       content: req.body.content,
-      user: user.username,
+      user: req.session.username,
       post: post.id
     });
 

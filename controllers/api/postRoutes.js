@@ -1,11 +1,18 @@
 const router = require('express').Router();
-const { Post, User } = require('../../models/index');
+const { Post, User, Comment } = require('../../models/index');
 const withAuth = require('../../utils/auth');
 
 router.get('/:id', withAuth, async (req, res) => {
   try {
     const post = await Post.findByPk(req.params.id, {
       raw: true
+    });
+    const comments = await Comment.findAll({
+      raw: true,
+      where: {
+        post: req.params.id
+      },
+      order: [[ 'createdAt', 'DESC' ]]
     });
 
     if (!post) {
@@ -15,6 +22,7 @@ router.get('/:id', withAuth, async (req, res) => {
 
     res.status(200).render('postpage', {
       post,
+      comments,
       logged_in: req.session.loggedIn
     });
   } catch (err) {

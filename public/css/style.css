@@ -2,6 +2,10 @@
   font-family: 'Noto Sans', sans-serif;
 }
 
+input {
+  text-align: center;
+}
+
 body {
   background-color: white;
 }

@@ -36,7 +36,7 @@
     {{> dashboard-posts}}
     {{/each}}
   </div>
-  <div class="modal fade" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
+  <div class="modal fade text-center" id="postModal" tabindex="-1" aria-labelledby="postModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <form id="new-post">
         <div class="modal-content">
@@ -49,11 +49,11 @@
           <div class="modal-body">
               <div class="form-group">
                 <label class="h4" for="title">Title</label>
-                <input type="text" class="form-control" id="newPostTitle" required>
+                <input type="text" class="form-control" placeholder="JavaScript Mastery" id="newPostTitle" required>
               </div>
               <div class="form-group">
                 <label class="h4" for="content">Content</label>
-                <input type="text" class="form-control" id="newPostContent" required>
+                <input type="text" class="form-control" placeholder="Prototypical Inheritance..." id="newPostContent" required>
               </div>
           </div>
           <div class="modal-footer">

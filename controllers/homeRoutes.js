@@ -69,4 +69,30 @@ router.get('/dashboard', withAuth, async (req, res) => {
   }
 });
 
+router.get('/dashboard/post/:id', withAuth, async (req, res) => {
+  try {
+    const user = await User.findOne({
+      raw: true,
+      where: {
+        username: req.session.username
+      }
+    });
+    const post = await Post.findByPk(req.params.id, {
+      raw: true
+    });
+    
+    if (user.username === post.user) {
+      res.status(200).render('post-edits', {
+        post,
+        logged_in: req.session.loggedIn
+      });
+      return;
+    }
+
+    res.status(400).json({ message: 'Only creators of posts can edit them!' });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

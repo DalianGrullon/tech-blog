@@ -1,0 +1,95 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+    <a data-nav="home" class="navbar-brand" href="#">Tech Blog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a data-nav="home" class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a data-nav="dashboard" class="nav-link" href="#">Dashboard</a>
+        </li>
+        {{#if logged_in}}
+        <li class="nav-item">
+          <a data-nav="logout" class="nav-link" href="#">Logout</a>
+        </li>
+        {{else}}
+        <li class="nav-item">
+          <a data-nav="login" class="nav-link" href="#">Login</a>
+        </li>
+        {{/if}}
+      </ul>
+    </div>
+  </nav>
+</header>
+<main>
+  <div id="{{ post.id }}" class="card mt-5 col-6 mx-auto p-0 text-center toChange">
+    <div class="card-header pb-0">
+      <a class="post-card" href="#" data-toggle="modal" data-target="#updatePostModal">
+        <span class="material-icons float-left">edit</span>
+      </a>
+      <a class="post-card" href="#" data-toggle="modal" data-target="#deletePostModal">
+        <span class="material-icons float-right">delete</span>
+      </a>
+      <h2>
+        {{ post.title }}
+      </h2>
+      <p class="small text-muted">
+        Posted on {{ format_date post.createdAt }}
+      </p>
+    </div>
+  </div>
+  <div class="modal fade" id="updatePostModal" tabindex="-1" aria-labelledby="updatePostModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form id="update-post">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="updatePostModalLable">Update Blog Post</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                <label class="h4" for="title">New Title</label>
+                <input type="text" class="form-control" id="updatePostTitle" required>
+              </div>
+              <div class="form-group">
+                <label class="h4" for="content">New Content</label>
+                <input type="text" class="form-control" id="updatePostContent" required>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="modal fade" id="deletePostModal" tabindex="-1" aria-labelledby="deletePostModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <form id="delete-post">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deletePostModalLable">delete Blog Post</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <p class="h5">Are you sure you would like to delete this blog post?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button id="delete-button" type="button" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+<script src="/js/post-edits.js"></script>

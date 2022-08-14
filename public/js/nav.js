@@ -7,9 +7,9 @@ async function clickHandler(event) {
     case 'home':
       window.location.href = '/';
       break;
-    // case 'dashboard':
-    
-    //   break;
+    case 'dashboard':
+      window.location.href = '/dashboard';
+      break;
     case 'login':
       window.location.href = '/login';
       break;

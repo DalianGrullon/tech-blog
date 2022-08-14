@@ -2,28 +2,28 @@ const { Comment } = require('../models/index');
 
 const commentData = [
   {
-    content: 'comment on post 1',
-    user: 'user1',
+    content: 'They really are!',
+    user: 'JohnnyRocket',
     post: 1
   },
   {
-    content: 'comment on post 2',
-    user: 'user2',
+    content: 'Okay, maybe I am',
+    user: 'ChrisHaine',
     post: 2
   },
   {
-    content: 'comment on post 3',
-    user: 'user3',
+    content: 'In due time...',
+    user: 'AnotherOne',
     post: 3
   },
   {
-    content: 'comment on post 4',
-    user: 'user4',
+    content: 'It is also problematic at times...',
+    user: 'JSisCool',
     post: 4
   },
   {
-    content: 'comment on post 5',
-    user: 'user5',
+    content: 'AND AI/ML',
+    user: 'JavaVSPython',
     post: 5
   },
 ];

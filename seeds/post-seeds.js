@@ -2,35 +2,30 @@ const { Post } = require('../models/index');
 
 const postData = [
   {
-    title: 'post 1',
-    content: 'sample post 1',
-    user: 'user1'
+    title: 'Rockets',
+    content: 'Rockets are FAST',
+    user: 'JohnnyRocket'
   },
   {
-    title: 'post 1 #2',
-    content: 'sample post 1',
-    user: 'user2'
+    title: 'Haines',
+    content: 'No, I am not refering to the underwear',
+    user: 'ChrisHaine'
   },
   {
-    title: 'post 2',
-    content: 'sample post 2',
-    user: 'user3'
+    title: 'Level Up',
+    content: 'Just practice a lot...',
+    user: 'AnotherOne'
   },
   {
-    title: 'post 3',
-    content: 'sample post 3',
-    user: 'user4'
+    title: 'JavaScript',
+    content: 'It is dynamically typed, prototype based...',
+    user: 'JSisCool'
   },
   {
-    title: 'post 4',
-    content: 'sample post 4',
-    user: 'user5'
-  },
-  {
-    title: 'post 5',
-    content: 'sample post 5',
-    user: 'user6'
-  },
+    title: 'Python',
+    content: 'It is used a LOT for science',
+    user: 'JavaVSPython'
+  }
 ];
 
 const seedPosts = () => Post.bulkCreate(postData);

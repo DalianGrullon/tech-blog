@@ -2,23 +2,23 @@ const { User } = require('../models/index');
 
 const userData = [
   {
-    username: 'user1',
+    username: 'JohnnyRocket',
     password: 'password'
   },
   {
-    username: 'user2',
+    username: 'ChrisHaine',
     password: 'password'
   },
   {
-    username: 'user3',
+    username: 'AnotherOne',
     password: 'password'
   },
   {
-    username: 'user4',
+    username: 'JSisCool',
     password: 'password'
   },
   {
-    username: 'user5',
+    username: 'JavaVSPython',
     password: 'password'
   },
 ];

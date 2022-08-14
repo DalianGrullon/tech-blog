@@ -89,7 +89,7 @@ router.get('/dashboard/post/:id', withAuth, async (req, res) => {
       return;
     }
 
-    res.status(400).json({ message: 'Only creators of posts can edit them!' });
+    res.status(400).redirect(`/api/posts/${req.params.id}`);
   } catch (err) {
     res.status(500).json(err);
   }

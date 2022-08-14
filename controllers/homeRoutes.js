@@ -57,7 +57,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
       raw: true,
       where: {
         user: user.username
-      }
+      },
+      order: [[ 'createdAt', 'DESC' ]]
     });
     
     res.render('dashboard', {
